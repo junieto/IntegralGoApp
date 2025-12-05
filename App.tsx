@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Provider as PaperProvider } from 'react-native-paper';
+import SplashScreen from 'react-native-splash-screen';
+
 import Formulario from './screens/Formulario';
 import Home from './screens/Home';
 import ServicioDetalle from './screens/ServicioDetalle';
-import SplashScreen from 'react-native-splash-screen';
 
-// Tipado de las rutas
 export type RootStackParamList = {
   Formulario: undefined;
   Home: { nombre: string };
@@ -17,16 +18,18 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   useEffect(() => {
-    SplashScreen.hide(); // 👈 oculta el splash al montar la app
+    SplashScreen.hide();
   }, []);
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Formulario">
-        <Stack.Screen name="Formulario" component={Formulario} />
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="ServicioDetalle" component={ServicioDetalle} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <PaperProvider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Formulario">
+          <Stack.Screen name="Formulario" component={Formulario} />
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="ServicioDetalle" component={ServicioDetalle} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </PaperProvider>
   );
 }
