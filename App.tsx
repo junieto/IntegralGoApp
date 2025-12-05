@@ -6,6 +6,7 @@ import Home from './screens/Home';
 import ServicioDetalle from './screens/ServicioDetalle';
 import SplashScreen from 'react-native-splash-screen';
 
+// Tipado de las rutas
 export type RootStackParamList = {
   Formulario: undefined;
   Home: { nombre: string };

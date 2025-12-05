@@ -4,9 +4,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Provider as PaperProvider } from 'react-native-paper';
 import SplashScreen from 'react-native-splash-screen';
 
-import Formulario from './screens/Formulario.tsx';
-import Home from './screens/Home.tsx';
-import ServicioDetalle from './screens/ServicioDetalle.tsx';
+import Formulario from './Formulario';
+import Home from './Home';
+import ServicioDetalle from './ServicioDetalle';
 
 export type RootStackParamList = {
   Formulario: undefined;

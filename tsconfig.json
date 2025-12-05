@@ -1,16 +1,12 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
     "jsx": "react",
     "moduleResolution": "node",
     "allowJs": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "noEmit": true,
-    "isolatedModules": true
+    "strict": false
   },
-  "include": ["src", "screens", "App.tsx"],
+  "include": ["screens", "App.tsx"],
   "exclude": ["node_modules"]
 }
