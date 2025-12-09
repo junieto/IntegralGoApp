@@ -7,7 +7,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Provider as PaperProvider, Text, TextInput, Button, RadioButton } from 'react-native-paper';
 import SplashScreen from 'react-native-splash-screen';
 
-// ... tu código de pantallas igual que antes ...
+import Login from './screens/Login';
+
 export default function App() {
   useEffect(() => {
     // Oculta el splash cuando React Native ya montó
@@ -25,7 +26,7 @@ export default function App() {
           }}
         >
           <Stack.Screen name="Welcome" component={WelcomeScreen} />
-          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Register" component={RegisterScreen} />
           <Stack.Screen name="Home" component={HomeScreen} />
         </Stack.Navigator>
@@ -295,12 +296,12 @@ function HomeScreen({ route, navigation }: any) {
       </Text>
       {!!name && (
         <Text variant="bodyMedium" style={{ color: '#FFFFFF', textAlign: 'center', marginBottom: 8 }}>
-          Bienvenido, {name}
+          Bienvenido, {name ?? ''}
         </Text>
       )}
       {!!email && (
         <Text variant="bodyMedium" style={{ color: '#FFFFFF', textAlign: 'center', marginBottom: 8 }}>
-          Email: {email}
+          Email: {email ?? ''}
         </Text>
       )}
       <Button mode="contained" onPress={() => navigation.navigate('Welcome')} style={{ backgroundColor: '#00BCD4' }}>

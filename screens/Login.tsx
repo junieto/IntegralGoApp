@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import { Text, TextInput, Button } from 'react-native-paper';
+import { loginSupabase } from '../services/supabaseAuth';
 
 export default function LoginScreen({ navigation }: any) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorEmail, setErrorEmail] = useState<string | undefined>();
   const [errorPassword, setErrorPassword] = useState<string | undefined>();
+  const [apiError, setApiError] = useState<string | undefined>();
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
+    console.log("onSubmit ejecutado");
     setErrorEmail(undefined);
     setErrorPassword(undefined);
+    setApiError(undefined);
     let valid = true;
 
     if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
@@ -24,7 +28,15 @@ export default function LoginScreen({ navigation }: any) {
 
     if (!valid) return;
 
-    navigation.navigate('Home', { mode: 'login', email });
+    try {
+      const data = await loginSupabase(email, password);
+      console.log("Respuesta Supabase:", data);
+      navigation.navigate('Home', { mode: 'login', email, token: data.access_token });
+    } catch (error: any) {
+      console.error("Error Supabase:", error.message);
+      setApiError(error.message);
+    }
+
   };
 
   return (
@@ -53,6 +65,8 @@ export default function LoginScreen({ navigation }: any) {
         style={{ marginBottom: 12, backgroundColor: '#1E1E1E' }}
       />
       {errorPassword ? <Text style={{ color: '#E91E63', marginBottom: 12 }}>{errorPassword}</Text> : null}
+
+      {apiError ? <Text style={{ color: '#FF5722', marginBottom: 12 }}>{apiError}</Text> : null}
 
       <Button mode="contained" onPress={onSubmit} style={{ marginTop: 8, backgroundColor: '#00BCD4' }}>
         Ingresar
