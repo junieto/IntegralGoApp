@@ -1,95 +1,156 @@
 import React, { useState } from 'react';
-import { ScrollView, View } from 'react-native';
-import { Text, TextInput, Button, RadioButton } from 'react-native-paper';
+import { View } from 'react-native';
+import { Text, TextInput, Button } from 'react-native-paper';
+import { registerSupabase } from '../services/supabaseRegister';
 
-export default function FormularioScreen({ navigation }: any) {
+export default function Formulario({ navigation }: any) {
   const [name, setName] = useState('');
-  const [dob, setDob] = useState('');
-  const [gender, setGender] = useState<'male' | 'female' | 'none'>('none');
-  const [info, setInfo] = useState('');
+  const [phone, setPhone] = useState('');
+  const [birthdate, setBirthdate] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const [errName, setErrName] = useState<string | undefined>();
-  const [errDob, setErrDob] = useState<string | undefined>();
+  const [errorName, setErrorName] = useState<string | undefined>();
+  const [errorPhone, setErrorPhone] = useState<string | undefined>();
+  const [errorBirthdate, setErrorBirthdate] = useState<string | undefined>();
+  const [errorEmail, setErrorEmail] = useState<string | undefined>();
+  const [errorPassword, setErrorPassword] = useState<string | undefined>();
+  const [apiError, setApiError] = useState<string | undefined>();
 
-  const validateDob = (v: string) => /^\d{2}\/\d{2}\/\d{4}$/.test(v);
+  const onSubmit = async () => {
+    setErrorName(undefined);
+    setErrorPhone(undefined);
+    setErrorBirthdate(undefined);
+    setErrorEmail(undefined);
+    setErrorPassword(undefined);
+    setApiError(undefined);
 
-  const onSubmit = () => {
-    setErrName(undefined);
-    setErrDob(undefined);
     let valid = true;
 
-    if (!name || name.trim().length < 2) {
-      setErrName('Ingresa tu nombre completo');
+    if (!name.trim()) {
+      setErrorName('Ingresa tu nombre');
       valid = false;
     }
-    if (!dob || !validateDob(dob)) {
-      setErrDob('Usa el formato DD/MM/AAAA');
+
+    if (!phone || !/^\d{8,15}$/.test(phone)) {
+      setErrorPhone('Ingresa un teléfono válido (solo números)');
       valid = false;
     }
+
+    if (!birthdate || !/^\d{4}-\d{2}-\d{2}$/.test(birthdate)) {
+      setErrorBirthdate('Formato inválido. Usa YYYY-MM-DD');
+      valid = false;
+    }
+
+    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+      setErrorEmail('Ingresa un email válido');
+      valid = false;
+    }
+
+    if (!password || password.length < 4) {
+      setErrorPassword('La contraseña debe tener mínimo 4 caracteres');
+      valid = false;
+    }
+
     if (!valid) return;
 
-    navigation.navigate('Home', { mode: 'register', name });
+    try {
+      const data = await registerSupabase({
+        name,
+        phone,
+        birthdate,
+        email,
+        password
+      });
+
+      navigation.navigate('Home', {
+        mode: 'register',
+        email,
+        token: data.access_token
+      });
+
+    } catch (error: any) {
+      setApiError(error.message);
+    }
   };
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: '#121212', padding: 20 }}>
-      <Text variant="headlineMedium" style={{ color: '#FFFFFF', textAlign: 'center', marginBottom: 20 }}>
+    <View style={{ flex: 1, backgroundColor: '#121212', padding: 20, justifyContent: 'center' }}>
+      <Text variant="headlineMedium" style={{ color: '#FFFFFF', textAlign: 'center', marginBottom: 24 }}>
         Registro
       </Text>
 
       <TextInput
-        label="Nombre completo"
+        label="Nombre"
         value={name}
         onChangeText={setName}
-        error={Boolean(errName)}
+        error={!!errorName}
         style={{ marginBottom: 12, backgroundColor: '#1E1E1E' }}
       />
-      {errName ? <Text style={{ color: '#E91E63', marginBottom: 12 }}>{errName}</Text> : null}
+      {errorName && <Text style={{ color: '#E91E63', marginBottom: 12 }}>{errorName}</Text>}
 
       <TextInput
-        label="Fecha de nacimiento (DD/MM/AAAA)"
-        value={dob}
-        onChangeText={setDob}
-        keyboardType="number-pad"
-        error={Boolean(errDob)}
+        label="Teléfono"
+        value={phone}
+        onChangeText={setPhone}
+        keyboardType="numeric"
+        error={!!errorPhone}
         style={{ marginBottom: 12, backgroundColor: '#1E1E1E' }}
       />
-      {errDob ? <Text style={{ color: '#E91E63', marginBottom: 12 }}>{errDob}</Text> : null}
-
-      <Text variant="titleSmall" style={{ color: '#CCCCCC', marginTop: 8, marginBottom: 8 }}>
-        Género
-      </Text>
-      <RadioButton.Group onValueChange={(value) => setGender(value as any)} value={gender}>
-        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8 }}>
-          <RadioButton value="male" />
-          <Text style={{ color: '#FFFFFF', marginRight: 16 }}>Masculino</Text>
-          <RadioButton value="female" />
-          <Text style={{ color: '#FFFFFF', marginRight: 16 }}>Femenino</Text>
-          <RadioButton value="none" />
-          <Text style={{ color: '#FFFFFF' }}>Prefiero no decir</Text>
-        </View>
-      </RadioButton.Group>
+      {errorPhone && <Text style={{ color: '#E91E63', marginBottom: 12 }}>{errorPhone}</Text>}
 
       <TextInput
-        label="Información adicional"
-        value={info}
-        onChangeText={setInfo}
-        multiline
-        style={{ marginBottom: 12, backgroundColor: '#1E1E1E', minHeight: 100 }}
+        label="Nacimiento (YYYY-MM-DD)"
+        value={birthdate}
+        onChangeText={setBirthdate}
+        keyboardType="numeric"
+        error={!!errorBirthdate}
+        style={{ marginBottom: 12, backgroundColor: '#1E1E1E' }}
       />
+      {errorBirthdate && <Text style={{ color: '#E91E63', marginBottom: 12 }}>{errorBirthdate}</Text>}
 
-      <Button mode="contained" onPress={onSubmit} style={{ marginTop: 8, backgroundColor: '#E91E63' }}>
-        Continuar
+      <TextInput
+        label="Email"
+        value={email}
+        onChangeText={setEmail}
+        autoCapitalize="none"
+        error={!!errorEmail}
+        style={{ marginBottom: 12, backgroundColor: '#1E1E1E' }}
+      />
+      {errorEmail && <Text style={{ color: '#E91E63', marginBottom: 12 }}>{errorEmail}</Text>}
+
+      <TextInput
+        label="Contraseña"
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry
+        error={!!errorPassword}
+        style={{ marginBottom: 12, backgroundColor: '#1E1E1E' }}
+      />
+      {errorPassword && <Text style={{ color: '#E91E63', marginBottom: 12 }}>{errorPassword}</Text>}
+
+      {apiError && <Text style={{ color: '#FF5722', marginBottom: 12 }}>{apiError}</Text>}
+
+      <Button mode="contained" onPress={onSubmit} style={{ marginTop: 8, backgroundColor: '#00BCD4' }}>
+        Registrarse
       </Button>
 
       <Button
         mode="text"
-        onPress={() => navigation.navigate('Home')}
+        onPress={() => navigation.navigate('Login')}
         style={{ marginTop: 16 }}
         textColor="#CCCCCC"
       >
-        Volver
+        Ya tengo cuenta
       </Button>
-    </ScrollView>
+      <Button
+        mode="outlined"
+        onPress={() => navigation.navigate('Home', { mode: 'guest' })}
+        style={{ marginTop: 16, borderColor: '#00BCD4' }}
+        textColor="#00BCD4"
+>
+        Volver al Home
+      </Button>
+    </View>
   );
 }
