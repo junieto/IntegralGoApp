@@ -8,6 +8,7 @@ import { Provider as PaperProvider, Text, TextInput, Button, RadioButton } from 
 import SplashScreen from 'react-native-splash-screen';
 
 import Login from './screens/Login';
+import Formulario from './screens/Formulario';
 
 export default function App() {
   useEffect(() => {
@@ -27,7 +28,7 @@ export default function App() {
         >
           <Stack.Screen name="Welcome" component={WelcomeScreen} />
           <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Register" component={RegisterScreen} />
+          <Stack.Screen name="Register" component={Formulario} />
           <Stack.Screen name="Home" component={HomeScreen} />
         </Stack.Navigator>
       </NavigationContainer>
