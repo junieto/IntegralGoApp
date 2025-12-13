@@ -72,12 +72,12 @@ export default function ServicioDetalleScreen({ route, navigation }: any) {
         </Button>
 
         <Button
-          mode="outlined"
-          onPress={() => navigation.navigate('Home')}
-          style={{ borderColor: '#00BCD4' }}
-          textColor="#00BCD4"
+           mode="outlined"
+            onPress={() => navigation.navigate('Home', { mode: 'auth' })}
+            style={{ borderColor: '#00BCD4' }}
+            textColor="#00BCD4"
         >
-          Volver
+        Volver
         </Button>
       </View>
     </ScrollView>

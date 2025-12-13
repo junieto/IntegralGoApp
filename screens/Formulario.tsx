@@ -64,7 +64,7 @@ export default function Formulario({ navigation }: any) {
       });
 
       navigation.navigate('Home', {
-        mode: 'register',
+        mode: 'auth',
         email,
         token: data.access_token
       });

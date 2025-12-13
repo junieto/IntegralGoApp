@@ -31,7 +31,7 @@ export default function LoginScreen({ navigation }: any) {
     try {
       const data = await loginSupabase(email, password);
       console.log("Respuesta Supabase:", data);
-      navigation.navigate('Home', { mode: 'login', email, token: data.access_token });
+      navigation.navigate('Home', { mode: 'auth', email, token: data.access_token });
     } catch (error: any) {
       console.error("Error Supabase:", error.message);
       setApiError(error.message);
