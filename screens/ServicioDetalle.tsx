@@ -39,10 +39,10 @@ export default function ServicioDetalleScreen({ route, navigation }: any) {
   return (
     <ScrollView style={{ flex: 1, backgroundColor: '#121212' }}>
       <View style={{ padding: 20 }}>
-        <Text variant="headlineMedium" style={{ color: '#FFFFFF', marginBottom: 12 }}>
+        <Text variant="headlineMedium" style={{ color: '#FFFFFF', marginBottom: 24, marginTop: 30, textAlign: "center" }}>
           {servicio.titulo}
         </Text>
-        <Text variant="bodyMedium" style={{ color: '#CCCCCC', marginBottom: 16 }}>
+        <Text variant="bodyMedium" style={{ color: '#CCCCCC', marginBottom: 16, textAlign: "center" }}>
           {servicio.descripcion}
         </Text>
 

@@ -121,7 +121,7 @@ export default function HomeScreen({ route, navigation, finished, setFinished }:
           <>
             <Text
               variant="titleLarge"
-              style={{ color: '#FFFFFF', marginBottom: 12 }}
+              style={{ color: '#FFFFFF', marginBottom: 12, marginTop: 24, fontSize: 24, fontWeight: 'bold' }}
             >
               Nuestros Servicios
             </Text>
@@ -130,91 +130,74 @@ export default function HomeScreen({ route, navigation, finished, setFinished }:
               style={{
                 flexDirection: 'row',
                 flexWrap: 'wrap',
-                justifyContent: 'space-between',
+                justifyContent: 'space-around',
+                alignItems: "flex-start"
               }}
             >
-              <TouchableOpacity
-                style={{ width: '48%', marginBottom: 16 }}
+              <TouchableOpacity //QUIROPRAXIA
+                style={{ width: '48%', marginBottom: 8 }}
                 onPress={() => navigation.navigate('ServicioDetalle', { id: '1' })}
               >
                 <Image
-                  source={{ uri: 'https://static.wixstatic.com/media/6f2019_b7467ce3e5fd44d08dc30ef24808faf0~mv2.jpg' }}
-                  style={{ width: '100%', height: 120, borderRadius: 8 }}
-                  resizeMode="cover"
+                  source={{ uri: 'https://static.wixstatic.com/media/6f2019_b497e4b291ed4729944767b37823dad9~mv2.png' }}
+                  style={{ width: '100%', height: 200, borderRadius: 8 }}
+                  resizeMode="contain"
                 />
-                <Text style={{ color: '#FFFFFF', marginTop: 8 }}>
-                  Quiropraxia
-                </Text>
               </TouchableOpacity>
 
-              <TouchableOpacity
-                style={{ width: '48%', marginBottom: 16 }}
+              <TouchableOpacity //KINESIOLOGIA
+                style={{ width: '48%', marginBottom: 8 }}
                 onPress={() => navigation.navigate('ServicioDetalle', { id: '2' })}
               >
                 <Image
-                  source={{ uri: 'https://static.wixstatic.com/media/6f2019_a4121c0d12984d5db7c9ba5117aeaf99~mv2.jpg' }}
-                  style={{ width: '100%', height: 120, borderRadius: 8 }}
-                  resizeMode="cover"
+                  source={{ uri: 'https://static.wixstatic.com/media/6f2019_3f2a85ad3dde4b539c2913118e9b7c48~mv2.png' }}
+                  style={{ width: '100%', height: 200, borderRadius: 8 }}
+                  resizeMode="contain"
                 />
-                <Text style={{ color: '#FFFFFF', marginTop: 8 }}>
-                  Kinesiología
-                </Text>
               </TouchableOpacity>
 
-              <TouchableOpacity
-                style={{ width: '48%', marginBottom: 16 }}
+              <TouchableOpacity //MASOTERAPIA
+                style={{ width: '48%', marginBottom: 8 }}
                 onPress={() => navigation.navigate('ServicioDetalle', { id: '3' })}
               >
                 <Image
-                  source={{ uri: 'https://static.wixstatic.com/media/6f2019_ec350a0d5b654ea7a5202792969840f1~mv2.jpg' }}
-                  style={{ width: '100%', height: 120, borderRadius: 8 }}
-                  resizeMode="cover"
+                  source={{ uri: 'https://static.wixstatic.com/media/6f2019_716dabd9e24d4206bd9eb109dec1c2a2~mv2.png' }}
+                  style={{ width: '100%', height: 200, borderRadius: 8 }}
+                  resizeMode="contain"
                 />
-                <Text style={{ color: '#FFFFFF', marginTop: 8 }}>
-                  Masoterapia
-                </Text>
               </TouchableOpacity>
 
-              <TouchableOpacity
-                style={{ width: '48%', marginBottom: 16 }}
+              <TouchableOpacity //NUTRICION
+                style={{ width: '48%', marginBottom: 8 }}
                 onPress={() => navigation.navigate('ServicioDetalle', { id: '4' })}
               >
                 <Image
-                  source={{ uri: 'https://static.wixstatic.com/media/6f2019_8f6c9a28a6f84d22a2851b663e869821~mv2.jpg' }}
-                  style={{ width: '100%', height: 120, borderRadius: 8 }}
-                  resizeMode="cover"
+                  source={{ uri: 'https://static.wixstatic.com/media/6f2019_3c4f405fad494c3881c4c511e8d7cfbc~mv2.png' }}
+                  style={{ width: '100%', height: 200, borderRadius: 8 }}
+                  resizeMode="contain"
                 />
-                <Text style={{ color: '#FFFFFF', marginTop: 8 }}>
-                  Nutrición
-                </Text>
               </TouchableOpacity>
 
-              <TouchableOpacity
-                style={{ width: '48%', marginBottom: 16 }}
+              <TouchableOpacity //ACUPUNTURA
+                style={{ width: '48%', marginBottom: 8 }}
                 onPress={() => navigation.navigate('ServicioDetalle', { id: '5' })}
               >
                 <Image
-                  source={{ uri: 'https://static.wixstatic.com/media/6f2019_dc4b12e41ae24414b0be223400a03d18~mv2.jpg' }}
-                  style={{ width: '100%', height: 120, borderRadius: 8 }}
-                  resizeMode="cover"
+                  source={{ uri: 'https://static.wixstatic.com/media/6f2019_452c1296f4024f0395a775107a2bff77~mv2.png' }}
+                  style={{ width: '100%', height: 200, borderRadius: 8 }}
+                  resizeMode="contain"
                 />
-                <Text style={{ color: '#FFFFFF', marginTop: 8 }}>
-                  Acupuntura
-                </Text>
               </TouchableOpacity>
 
-              <TouchableOpacity
-                style={{ width: '48%', marginBottom: 16 }}
+              <TouchableOpacity //BIENESTAR FEMENINO
+                style={{ width: '48%', marginBottom: 8 }}
                 onPress={() => navigation.navigate('ServicioDetalle', { id: '6' })}
               >
                 <Image
-                  source={{ uri: 'https://static.wixstatic.com/media/6f2019_1cb625a10d3040ad8b49853e4cd16239~mv2.jpg' }}
-                  style={{ width: '100%', height: 120, borderRadius: 8 }}
-                  resizeMode="cover"
+                  source={{ uri: 'https://static.wixstatic.com/media/6f2019_5d372e49974d40df8f43ced29eb8aa98~mv2.png' }}
+                  style={{ width: '100%', height: 200, borderRadius: 8 }}
+                  resizeMode="contain"
                 />
-                <Text style={{ color: '#FFFFFF', marginTop: 8 }}>
-                  Bienestar femenino
-                </Text>
               </TouchableOpacity>
 
             </View>
