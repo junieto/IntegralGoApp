@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SafeAreaView, ScrollView, KeyboardAvoidingView, Platform, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -22,8 +21,9 @@ export type RootStackParamList = {
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
+  const [finished, setFinished] = useState(false);
+
   useEffect(() => {
-    // Oculta el splash cuando React Native ya montó
     SplashScreen.hide();
   }, []);
 
@@ -37,11 +37,21 @@ export default function App() {
             animation: 'fade',
           }}
         >
-          <Stack.Screen name="Home" component={HomeScreen} />
+          {/* 👇 pasamos finished y setFinished como props */}
+          <Stack.Screen name="Home">
+            {(props) => (
+              <HomeScreen
+                {...props}
+                finished={finished}
+                setFinished={setFinished}
+              />
+            )}
+          </Stack.Screen>
+
           <Stack.Screen name="Register" component={Formulario} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="ServicioDetalle" component={ServicioDetalleScreen} />
-          </Stack.Navigator>
+        </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
   );
