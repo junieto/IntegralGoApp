@@ -8,19 +8,22 @@ export default function HomeScreen({ route, navigation }: any) {
   const isAuthenticated = mode === 'auth';
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: '#121212' }}
-    contentContainerStyle={{flexGrow: 1, justifyContent: 'center'}}
-    >
+    <ScrollView
+     style={{ flex: 1, backgroundColor: '#121212' }}
+     contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-start', paddingTop: 60 }}>
+
       
       {/* ✅ Video solo si está autenticado */}
       {isAuthenticated && (
         <Video
-          source={{ uri: 'https://www.w3schools.com/html/mov_bbb.mp4' }}
-          style={{ width: '100%', height: 200 }}
+          source={{ uri: 'https://video.wixstatic.com/video/6f2019_eed38e972ccc414f8ddc7748615a9ee8/1080p/mp4/file.mp4' }}
+          style={{ width: '100%', height: 200, marginTop: 60 }}
           resizeMode="cover"
-          repeat
-          muted
+          //repeat
           controls
+          paused={false} 
+          muted={false}
+          ignoreSilentSwitch="ignore"
         />
       )}
 
