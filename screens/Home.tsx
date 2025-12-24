@@ -35,7 +35,7 @@ export default function HomeScreen({ route, navigation, finished, setFinished }:
       source={{
         uri: 'https://video.wixstatic.com/video/6f2019_eed38e972ccc414f8ddc7748615a9ee8/1080p/mp4/file.mp4',
       }}
-      style={{ width: '100%', height: 200, marginTop: 60 }}
+      style={{ width: '100%', height: 280, marginTop: 40 }}
       resizeMode="cover"
       repeat={false}
       paused={finished || !isFocused}
