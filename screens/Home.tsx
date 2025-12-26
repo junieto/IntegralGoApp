@@ -3,9 +3,10 @@ import { useIsFocused, useFocusEffect } from '@react-navigation/native';
 import { View, ScrollView, Image, TouchableOpacity } from 'react-native';
 import { Text, Button } from 'react-native-paper';
 import Video from 'react-native-video';
-
+import CustomHeader from '../components/customerHeader';
 
 export default function HomeScreen({ route, navigation, finished, setFinished }: any) {
+  
   const { mode } = route.params || {};
   const isAuthenticated = mode === 'auth';
 
@@ -25,17 +26,19 @@ export default function HomeScreen({ route, navigation, finished, setFinished }:
   }, [setFinished]) );
 
   return (
+    <>
+    <CustomHeader />
     <ScrollView
      style={{ flex: 1, backgroundColor: '#121212' }}
-     contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-start', paddingTop: 60 }}>
+     contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-start', paddingTop: 0 }}>
   
-      {isAuthenticated && (
-  <>
+  {isAuthenticated && (
+    <>
     <Video
       source={{
         uri: 'https://video.wixstatic.com/video/6f2019_eed38e972ccc414f8ddc7748615a9ee8/1080p/mp4/file.mp4',
       }}
-      style={{ width: '100%', height: 280, marginTop: 40 }}
+      style={{ width: '100%', height: 280, marginTop: 0 }}
       resizeMode="cover"
       repeat={false}
       paused={finished || !isFocused}
@@ -60,62 +63,10 @@ export default function HomeScreen({ route, navigation, finished, setFinished }:
       </TouchableOpacity>
     )}
   </>
-)}
-
-
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        {!isAuthenticated && (
-          <>
-            <Text variant="headlineMedium" style={{ color: '#FFFFFF', marginBottom: 8 }}>
-             Bienvenido a
-            </Text>
-
-            <Text variant="displaySmall" style={{ fontWeight: '800', color: '#FFFFFF', marginBottom: 4 }}>
-              INTE
-            <Text style={{ color: '#E91E63' }}>GRAL</Text>
-            <Text style={{ color: '#00BCD4' }}>GO</Text>
-            </Text>
-
-            <Text variant="bodyMedium" style={{ color: '#CCCCCC', marginBottom: 32 }}>
-              Quiropraxia y salud integral
-            </Text>
-          </>
-        )}
-
-  {/* ✅ Contenedor centrado para los botones */}
-  {!isAuthenticated && (
-    <View style={{ width: '100%', alignItems: 'center' }}>
-      <Button
-        mode="contained"
-        onPress={() => navigation.navigate('Home', { mode: 'auth' })}
-        style={{ marginBottom: 12, width: '80%', backgroundColor: '#00BCD4' }}
-      >
-        Ingresar sin registrarse
-      </Button>
-
-      <Button
-        mode="contained"
-        onPress={() => navigation.navigate('Register')}
-        style={{ marginBottom: 12, width: '80%', backgroundColor: '#E91E63' }}
-      >
-        Registrarse
-      </Button>
-
-      <Button
-        mode="outlined"
-        onPress={() => navigation.navigate('Login')}
-        style={{ marginTop: 8, width: '80%', borderColor: '#00BCD4' }}
-        textColor="#00BCD4"
-      >
-        Login
-      </Button>
-
-      <Text variant="labelSmall" style={{ color: '#888', marginTop: 24 }}>
-        Versión 1.0
-      </Text>
-    </View>
   )}
 
+  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        
         {/* ✅ Servicios solo si está autenticado */}
         {isAuthenticated && (
           <>
@@ -205,5 +156,6 @@ export default function HomeScreen({ route, navigation, finished, setFinished }:
         )}
       </View>
     </ScrollView>
+    </>
   );
 }

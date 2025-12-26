@@ -6,11 +6,13 @@ import { Provider as PaperProvider, Text, TextInput, Button, RadioButton } from 
 import SplashScreen from 'react-native-splash-screen';
 
 import Login from './screens/Login';
+import Welcome from './screens/Welcome';
 import Formulario from './screens/Formulario';
 import HomeScreen from './screens/Home';
 import ServicioDetalleScreen from './screens/ServicioDetalle';
 
 export type RootStackParamList = {
+  Welcome: undefined;
   Home: { mode?: string; email?: string; token?: string } | undefined;
   Register: undefined;
   Login: undefined;
@@ -30,8 +32,8 @@ export default function App() {
     <PaperProvider theme={theme}>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="Home"
-          screenOptions={{
+            initialRouteName="Welcome"
+            screenOptions={{
             headerShown: false,
             animation: 'fade',
           }}
@@ -46,7 +48,7 @@ export default function App() {
               />
             )}
           </Stack.Screen>
-
+          <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
           <Stack.Screen name="Register" component={Formulario} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="ServicioDetalle" component={ServicioDetalleScreen} />

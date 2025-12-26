@@ -134,22 +134,13 @@ export default function Formulario({ navigation }: any) {
       <Button mode="contained" onPress={onSubmit} style={{ marginTop: 8, backgroundColor: '#00BCD4' }}>
         Registrarse
       </Button>
-
-      <Button
-        mode="text"
-        onPress={() => navigation.navigate('Login')}
-        style={{ marginTop: 16 }}
-        textColor="#CCCCCC"
-      >
-        Ya tengo cuenta
-      </Button>
       <Button
         mode="outlined"
-        onPress={() => navigation.navigate('Home', { mode: 'guest' })}
+        onPress={() => navigation.navigate('Welcome', { mode: 'guest' })}
         style={{ marginTop: 16, borderColor: '#00BCD4' }}
         textColor="#00BCD4"
 >
-        Volver al Home
+        Volver
       </Button>
     </View>
   );

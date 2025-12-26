@@ -73,10 +73,10 @@ export default function LoginScreen({ navigation }: any) {
       </Button>
 
       <Button
-        mode="text"
-        onPress={() => navigation.navigate('Home')}
-        style={{ marginTop: 16 }}
-        textColor="#CCCCCC"
+        mode="outlined"
+        onPress={() => navigation.navigate('Welcome', { mode: 'guest' })}
+        style={{ marginTop: 16, borderColor: '#00BCD4' }}
+        textColor="#00BCD4"
       >
         Volver
       </Button>
