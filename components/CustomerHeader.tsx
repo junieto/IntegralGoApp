@@ -4,6 +4,7 @@ import { Appbar } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../App';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
@@ -22,7 +23,9 @@ export default function CustomHeader() {
       </Text>
 
       <Appbar.Action
-        icon="cog"   // prueba con "cog", "settings" o "dots-vertical"
+        icon={(props) => (
+          <MaterialCommunityIcons name="menu" size={props.size} color={props.color} />
+        )}
         color="#FFFFFF"
         onPress={() => navigation.navigate('Opciones')}
       />

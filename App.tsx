@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Provider as PaperProvider } from 'react-native-paper';
 import SplashScreen from 'react-native-splash-screen';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Login from './screens/Login';
 import Welcome from './screens/Welcome';
@@ -34,7 +35,11 @@ export default function App() {
   }, []);
 
   return (
-    <PaperProvider theme={theme}>
+    <PaperProvider theme={theme} settings={{ 
+      icon: props => 
+      <MaterialCommunityIcons {...props} />, 
+      }}
+    >
       <NavigationContainer>
         <Stack.Navigator
           initialRouteName="Welcome"
