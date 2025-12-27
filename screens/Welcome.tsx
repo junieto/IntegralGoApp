@@ -43,7 +43,7 @@ export default function WelcomeScreen({ navigation }: any) {
         <Button
           mode="outlined"
           onPress={() => navigation.navigate('Login')}
-          style={{ marginTop: 8, width: '80%', borderColor: '#00BCD4' }}
+          style={{ marginBottom: 12, width: '80%', borderColor: '#00BCD4' }}
           textColor="#00BCD4"
         >
           Login

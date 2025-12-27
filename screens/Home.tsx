@@ -3,7 +3,7 @@ import { useIsFocused, useFocusEffect } from '@react-navigation/native';
 import { View, ScrollView, Image, TouchableOpacity } from 'react-native';
 import { Text, Button } from 'react-native-paper';
 import Video from 'react-native-video';
-import CustomHeader from '../components/customerHeader';
+import CustomHeader from '../components/CustomerHeader';
 
 export default function HomeScreen({ route, navigation, finished, setFinished }: any) {
   
@@ -27,7 +27,7 @@ export default function HomeScreen({ route, navigation, finished, setFinished }:
 
   return (
     <>
-    <CustomHeader />
+    <CustomHeader/>
     <ScrollView
      style={{ flex: 1, backgroundColor: '#121212' }}
      contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-start', paddingTop: 0 }}>

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, ScrollView, KeyboardAvoidingView, Platform, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Provider as PaperProvider, Text, TextInput, Button, RadioButton } from 'react-native-paper';
+import { Provider as PaperProvider } from 'react-native-paper';
 import SplashScreen from 'react-native-splash-screen';
 
 import Login from './screens/Login';
@@ -10,6 +9,9 @@ import Welcome from './screens/Welcome';
 import Formulario from './screens/Formulario';
 import HomeScreen from './screens/Home';
 import ServicioDetalleScreen from './screens/ServicioDetalle';
+import Opciones from './screens/Opciones';
+import DatosPersonales from './screens/DatosPersonales';
+import PlanTratamiento from './screens/PlanTratamiento';
 
 export type RootStackParamList = {
   Welcome: undefined;
@@ -17,6 +19,9 @@ export type RootStackParamList = {
   Register: undefined;
   Login: undefined;
   ServicioDetalle: { id: string };
+  DatosPersonales: undefined; 
+  PlanTratamiento: undefined;
+  Opciones: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -32,8 +37,8 @@ export default function App() {
     <PaperProvider theme={theme}>
       <NavigationContainer>
         <Stack.Navigator
-            initialRouteName="Welcome"
-            screenOptions={{
+          initialRouteName="Welcome"
+          screenOptions={{
             headerShown: false,
             animation: 'fade',
           }}
@@ -52,6 +57,9 @@ export default function App() {
           <Stack.Screen name="Register" component={Formulario} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="ServicioDetalle" component={ServicioDetalleScreen} />
+          <Stack.Screen name="DatosPersonales" component={DatosPersonales} /> 
+          <Stack.Screen name="PlanTratamiento" component={PlanTratamiento} />
+          <Stack.Screen name="Opciones" component={Opciones} />
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>

@@ -2,7 +2,7 @@ import React from 'react';
 import { ScrollView, Image, View, Linking } from 'react-native';
 import { Text, Button } from 'react-native-paper';
 import Video from 'react-native-video';
-import CustomHeader from '../components/customerHeader';
+import CustomHeader from '../components/CustomerHeader';
 
 
 export default function ServicioDetalleScreen({ route, navigation }: any) {
